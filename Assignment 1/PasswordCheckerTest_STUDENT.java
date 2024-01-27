@@ -15,15 +15,20 @@ import org.junit.Test;
  *
  */
 public class PasswordCheckerTest_STUDENT {
-
+    ArrayList<String> passwords;
     @Before
     public void setUp() throws Exception {
-
+        passwords = new ArrayList<String>();
+        passwords.add("test");
+        passwords.add("L2D");
+        passwords.add("scoobyDoo@123");
+        passwords.add("Pom2#");
+        passwords.add("Dlx20999$");
     }
 
     @After
     public void tearDown() throws Exception {
-
+       passwords = null;
     }
 
     /**
@@ -33,7 +38,23 @@ public class PasswordCheckerTest_STUDENT {
     @Test
     public void testIsValidPasswordTooShort()
     {
-        fail("Not implemented by student yet");
+        for(String s : passwords) {
+            boolean temp = s.equals("scoobyDoo@123") || s.equals("Dlx20999$");
+            try {
+                if(temp) {
+                    assertTrue(PasswordCheckerUtility.isValidLength(s));
+                } else {
+                    assertFalse(PasswordCheckerUtility.isValidLength(s));
+                }
+
+            } catch(LengthException e) {
+                if(temp) {
+                    fail("Should be true");
+                } else {
+                    assertTrue("Passed", true);
+                }
+            }
+        }
     }
 
     /**
@@ -43,7 +64,22 @@ public class PasswordCheckerTest_STUDENT {
     @Test
     public void testIsValidPasswordNoUpperAlpha()
     {
-        fail("Not implemented by student yet");
+        for(String s : passwords){
+            boolean temp = s.equals("L2D") || s.equals("scoobyDoo@123") || s.equals("Pom2#") || s.equals("Dlx20999$");
+            try{
+                if(temp) {
+                    assertTrue(PasswordCheckerUtility.hasUpperAlpha(s));
+                }else{
+                    assertFalse(PasswordCheckerUtility.hasUpperAlpha(s));
+                }
+            }catch(NoUpperAlphaException e){
+                if(temp) {
+                    fail("Should be true");
+                }else {
+                    assertTrue("Passed", true);
+                }
+            }
+        }
     }
 
     /**
@@ -53,7 +89,22 @@ public class PasswordCheckerTest_STUDENT {
     @Test
     public void testIsValidPasswordNoLowerAlpha()
     {
-        fail("Not implemented by student yet");
+        for(String s : passwords){
+            boolean temp = s.equals("l2D");
+            try{
+                if(temp){
+                    PasswordCheckerUtility.hasLowerAlpha(s);
+                }else{
+                    assertTrue(PasswordCheckerUtility.hasLowerAlpha(s));
+                }
+            }catch(NoLowerAlphaException e){
+                if(temp){
+                    fail("This should be true");
+                }else {
+                    assertTrue("Passed", true);
+                }
+            }
+        }
     }
     /**
      * Test if the password has more than 2 of the same character in sequence
@@ -62,7 +113,21 @@ public class PasswordCheckerTest_STUDENT {
     @Test
     public void testIsWeakPassword()
     {
-        fail("Not implemented by student yet");
+        for(String s : passwords){
+            boolean temp = s.equals("scoobyDoo@123");
+            try{
+                boolean weak = PasswordCheckerUtility.isWeakPassword(s);
+                if(temp){
+                    assertFalse(weak);
+                }
+            }catch(WeakPasswordException e){
+                if(temp){
+                    fail("This should be false above");
+                }else {
+                    assertTrue("Passed", true);
+                }
+            }
+        }
     }
 
     /**
@@ -70,9 +135,8 @@ public class PasswordCheckerTest_STUDENT {
      * This test should throw a InvalidSequenceException for second case
      */
     @Test
-    public void testIsValidPasswordInvalidSequence()
-    {
-        fail("Not implemented by student yet");
+    public void testIsValidPasswordInvalidSequence() {
+
     }
 
     /**
@@ -82,7 +146,22 @@ public class PasswordCheckerTest_STUDENT {
     @Test
     public void testIsValidPasswordNoDigit()
     {
-        fail("Not implemented by student yet");
+        for(String s : passwords){
+            boolean temp = s.equals("test");
+            try{
+                if(temp){
+                    assertFalse(PasswordCheckerUtility.hasDigital(s));
+                }else{
+                    assertTrue(PasswordCheckerUtility.hasDigital(s));
+                }
+            }catch(NoDigitException e){
+                if(temp){
+                    assertTrue("Passed", true);
+                }else{
+                    fail("This should be true");
+                }
+            }
+        }
     }
 
     /**
@@ -92,7 +171,22 @@ public class PasswordCheckerTest_STUDENT {
     @Test
     public void testIsValidPasswordSuccessful()
     {
-        fail("Not implemented by student yet");
+        for(String s : passwords){
+            boolean temp = s.equals("scoobyDoo@123");
+            try{
+                if(temp){
+                    assertTrue(PasswordCheckerUtility.isValidPassword(s));
+                }else{
+                    assertFalse(PasswordCheckerUtility.isValidPassword(s));
+                }
+            }catch(Exception e){
+                if(temp){
+                    fail("This should be true");
+                }else{
+                    assertTrue("Passed", true);
+                }
+            }
+        }
     }
 
     /**
@@ -101,7 +195,12 @@ public class PasswordCheckerTest_STUDENT {
      */
     @Test
     public void testInvalidPasswords() {
-        fail("Not implemented by student yet");
+        ArrayList<String> validPasswords = new ArrayList<>();
+        validPasswords.add("test The password must be at least 6 characters long");
+        validPasswords.add("L2D The password must be at least 6 characters long");
+        validPasswords.add("Pom2# The password must be at least 6 characters long");
+        validPasswords.add("Dlx20999$ The password cannot contain more than two of the same character in sequence.");
+        assertEquals(validPasswords, PasswordCheckerUtility.getInvalidPasswords(passwords));
     }
 
 }

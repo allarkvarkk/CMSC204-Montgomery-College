@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public class PasswordCheckerUtility {
 
 
@@ -91,10 +92,13 @@ public static boolean hasBetweenSixAndNineChars(String password){
 }
 public static boolean isWeakPassword(String password) throws WeakPasswordException{
     try {
-        return !isValidPassword(password) && hasBetweenSixAndNineChars(password);
+        if (!isValidPassword(password) || hasBetweenSixAndNineChars(password)) {
+            throw new WeakPasswordException();
+        }
     }catch(Exception e){
-       throw new WeakPasswordException();
+        throw new WeakPasswordException();
     }
+    return false;
 }
 public static ArrayList<String> getInvalidPasswords(ArrayList<String> password){
     ArrayList<String> temp = new ArrayList<String>();
