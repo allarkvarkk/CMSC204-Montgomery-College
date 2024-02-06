@@ -95,7 +95,7 @@ public static boolean isWeakPassword(String password) throws WeakPasswordExcepti
         if (!isValidPassword(password) || hasBetweenSixAndNineChars(password)) {
             throw new WeakPasswordException(); //if it's invalid of a length of 6-9 throw the error
         }
-    }catch(Exception e){
+    }catch(LengthException | NoUpperAlphaException | NoLowerAlphaException | NoDigitException | NoSpecialCharacterException | InvalidSequenceException e){
         throw new WeakPasswordException(); //catch the exceptions from isValidPassword and throw a different exception
     }
     return false;
@@ -105,7 +105,7 @@ public static ArrayList<String> getInvalidPasswords(ArrayList<String> password){
     for(String s : password){
         try{
             isValidPassword(s);
-        }catch(Exception e) {
+        }catch(LengthException | NoUpperAlphaException | NoLowerAlphaException | NoDigitException | NoSpecialCharacterException | InvalidSequenceException e){
             temp.add(s + " " + e.getMessage()); //if it's not a valid password write it with the message
         }
     }

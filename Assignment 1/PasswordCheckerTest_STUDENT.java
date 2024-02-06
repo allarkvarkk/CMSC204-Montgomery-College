@@ -53,6 +53,8 @@ public class PasswordCheckerTest_STUDENT {
                 } else {
                     assertTrue("Passed", true);
                 }
+            }catch(Exception e){
+                fail("wrong exception");
             }
         }
     }
@@ -78,6 +80,8 @@ public class PasswordCheckerTest_STUDENT {
                 }else {
                     assertTrue("Passed", true);
                 }
+            }catch(Exception e){
+                fail("wrong exception");
             }
         }
     }
@@ -103,6 +107,8 @@ public class PasswordCheckerTest_STUDENT {
                 }else {
                     assertTrue("Passed", true);
                 }
+            }catch(Exception e){
+                fail("wrong exception");
             }
         }
     }
@@ -126,6 +132,8 @@ public class PasswordCheckerTest_STUDENT {
                 }else {
                     assertTrue("Passed", true);
                 }
+            }catch(Exception e){
+                fail("wrong exception");
             }
         }
     }
@@ -136,6 +144,8 @@ public class PasswordCheckerTest_STUDENT {
      */
     @Test
     public void testIsValidPasswordInvalidSequence() {
+
+
 
     }
 
@@ -160,6 +170,8 @@ public class PasswordCheckerTest_STUDENT {
                 }else{
                     fail("This should be true");
                 }
+            }catch(Exception e){
+                fail("wrong exception");
             }
         }
     }
@@ -179,12 +191,14 @@ public class PasswordCheckerTest_STUDENT {
                 }else{
                     assertFalse(PasswordCheckerUtility.isValidPassword(s));
                 }
-            }catch(Exception e){
+            }catch(LengthException | NoUpperAlphaException | NoLowerAlphaException | NoDigitException | NoSpecialCharacterException | InvalidSequenceException e){
                 if(temp){
                     fail("This should be true");
                 }else{
                     assertTrue("Passed", true);
                 }
+            }catch(Exception e){
+                fail("wrong exception");
             }
         }
     }
