@@ -1,4 +1,15 @@
-
+/*
+ * Class: CMSC204 - 30377
+ * Instructor: Khandan Vahabzadeh Monshi
+ * Description: A JUnit class to test the password utilities class.
+ * Due: 2.6.2024
+ * Platform/compiler: IntelliJ IDEA
+ * I pledge that I have completed the programming
+ * assignment independently. I have not copied the code
+ * from a student or any source. I have not given my code
+ * to any student.
+   Print your Name here: Jacob Hauptman
+*/
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -144,7 +155,24 @@ public class PasswordCheckerTest_STUDENT {
      */
     @Test
     public void testIsValidPasswordInvalidSequence() {
-
+        for(String s : passwords){
+            boolean temp = s.equals("Dlx20999$");
+            try{
+                if (temp){
+                    assertTrue(PasswordCheckerUtility.NoSameCharInSequence(s));
+                }else{
+                    assertFalse(PasswordCheckerUtility.NoSameCharInSequence(s));
+                }
+            }catch(InvalidSequenceException e){
+                if(temp){
+                    assertTrue("passed",true);
+                }else{
+                    fail("Should be false above");
+                }
+            }catch(Exception e){
+                fail("wrong exception");
+            }
+        }
 
 
     }

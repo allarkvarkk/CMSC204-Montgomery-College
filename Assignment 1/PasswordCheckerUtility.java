@@ -1,7 +1,15 @@
-
-
-
-
+/*
+ * Class: CMSC204 - 30377
+ * Instructor: Khandan Vahabzadeh Monshi
+ * Description: A utility class for checking passwords with only static methods.
+ * Due: 2.6.2024
+ * Platform/compiler: IntelliJ IDEA
+ * I pledge that I have completed the programming
+ * assignment independently. I have not copied the code
+ * from a student or any source. I have not given my code
+ * to any student.
+   Print your Name here: Jacob Hauptman
+*/
 import java.util.ArrayList;
 public class PasswordCheckerUtility {
 
@@ -67,25 +75,13 @@ public static boolean NoSameCharInSequence(String password) throws InvalidSequen
     //Why is this function called "NoSameCharInSequence" and is supposed to return false when there is "no same chars in sequence" instead of true
 }
 public static boolean isValidPassword(String password) throws LengthException, NoUpperAlphaException, NoLowerAlphaException, NoDigitException, NoSpecialCharacterException, InvalidSequenceException{
-    if(!isValidLength(password)){ //the order of the exceptions is because the JavaDoc
-        throw new LengthException();
-    }
-    if(!hasUpperAlpha(password)){
-        throw new NoUpperAlphaException();
-    }
-    if(!hasLowerAlpha(password)){
-        throw new NoLowerAlphaException();
-    }
-    if(!hasDigital(password)){
-        throw new NoDigitException();
-    }
-    if(!hasSpecialChar(password)){
-        throw new NoSpecialCharacterException();
-    }
-    if(NoSameCharInSequence(password)){
-        throw new InvalidSequenceException();
-    }
-    return true; //return true if no exception thrown
+       isValidLength(password);
+       hasUpperAlpha(password);
+       hasLowerAlpha(password);
+       hasDigital(password);
+       hasSpecialChar(password);
+       NoSameCharInSequence(password);
+       return true; //return true if no exception thrown
 }
 public static boolean hasBetweenSixAndNineChars(String password){
    return password.length() >= 6 && password.length() <= 9;
@@ -110,5 +106,5 @@ public static ArrayList<String> getInvalidPasswords(ArrayList<String> password){
         }
     }
     return temp; //return the arraylist
-}
+    }
 }
