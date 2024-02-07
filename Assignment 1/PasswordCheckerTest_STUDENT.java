@@ -13,8 +13,6 @@
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Before;
@@ -188,9 +186,9 @@ public class PasswordCheckerTest_STUDENT {
             boolean temp = s.equals("test");
             try{
                 if(temp){
-                    assertFalse(PasswordCheckerUtility.hasDigital(s));
+                    assertFalse(PasswordCheckerUtility.hasDigits(s));
                 }else{
-                    assertTrue(PasswordCheckerUtility.hasDigital(s));
+                    assertTrue(PasswordCheckerUtility.hasDigits(s));
                 }
             }catch(NoDigitException e){
                 if(temp){

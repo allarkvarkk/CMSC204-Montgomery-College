@@ -43,7 +43,7 @@ public static boolean hasLowerAlpha(String password) throws NoLowerAlphaExceptio
         throw new NoLowerAlphaException();
     }
 }
-public static boolean hasDigital(String password) throws NoDigitException{
+public static boolean hasDigits(String password) throws NoDigitException{
    for(int i = 0; i < password.length(); i ++){
        if(Character.isDigit(password.charAt(i))){
            return true; //return true if a char is a digit
@@ -78,7 +78,7 @@ public static boolean isValidPassword(String password) throws LengthException, N
        isValidLength(password);
        hasUpperAlpha(password);
        hasLowerAlpha(password);
-       hasDigital(password);
+       hasDigits(password);
        hasSpecialChar(password);
        NoSameCharInSequence(password);
        return true; //return true if no exception thrown
