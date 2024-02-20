@@ -50,12 +50,18 @@ public class MyQueue <t> implements QueueInterface <t>{
 
     @Override
     public String toString(String delimiter) {
+        if(arr.isEmpty()){
+            return "";
+        }
         StringBuilder sb = new StringBuilder();
         for(t a : arr){
-
             sb.append(a).append(delimiter);
         }
-        return sb.substring(0,sb.length()-1); // goes to sb.length()-1 to exclude the delimiter at the very end
+        try {
+            return sb.substring(0, sb.length() - delimiter.length()); // goes to sb.length()-delimiter.length() to exclude the delimiter at the very end
+        }catch(IndexOutOfBoundsException e){
+            return "";
+        }
     }
 
     @Override

@@ -58,11 +58,14 @@ public class MyStack <t> implements StackInterface<t>{
     }
     @Override
     public String toString(String delimiter) {
+        if(arr.isEmpty()){
+            return "";
+        }
         StringBuilder sb = new StringBuilder();
         for(t a : arr){
             sb.append(a).append(delimiter);
         }
-        return sb.substring(0,sb.length()-1); // goes to sb.length()-1 to exclude the delimiter at the very end
+        return sb.substring(0, sb.length() - delimiter.length()); // goes to sb.length()-1 to exclude the delimiter at the very end
     }
 
     @Override
