@@ -1,3 +1,15 @@
+/*
+ * Class: CMSC204 - 30377
+ * Instructor: Khandan Vahabzadeh Monshi
+ * Description: A class that converts math expressions (infix and postfix) as well as evaluates them
+ * Due: 2.22.2024
+ * Platform/compiler: IntelliJ IDEA
+ * I pledge that I have completed the programming
+ * assignment independently. I have not copied the code
+ * from a student or any source. I have not given my code
+ * to any student.
+   Print your Name here: Jacob Hauptman
+*/
 import java.util.ArrayList;
 
 public class Notation {
@@ -25,7 +37,7 @@ public class Notation {
                     } else {
                         values[0] = stack.pop();
                         values[1] = stack.pop();
-                        switch (c) {
+                        switch (c) { //enhanced switch to evaluate the current math expression
                             case '+' -> stack.push(values[1] + values[0]);
                             case '-' -> stack.push(values[1] - values[0]);
                             case '*' -> stack.push(values[1] * values[0]);
